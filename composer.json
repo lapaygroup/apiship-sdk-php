@@ -1,5 +1,5 @@
 {
-  "name": "apiship/apiship-sdk-php",
+  "name": "lapaygroup/apiship-sdk-php",
   "description": "Inegration (SDK) with Apiship API",
   "keywords": [
     "Apiship",
@@ -11,13 +11,13 @@
   "type": "extension",
   "authors": [
     {
-      "name": "ApiShip",
-      "email": "info@apiship.ru"
+      "name": "LapayGroup",
+      "email": "support@lapaygroup.ru"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Apiship\\": "src"
+      "LapayGroup\\": "src"
     }
   },
   "require": {
@@ -25,3 +25,4 @@
     "guzzlehttp/guzzle": "~6.0"
   }
 }
+
