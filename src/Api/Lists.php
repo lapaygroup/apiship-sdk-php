@@ -8,6 +8,7 @@ use Apiship\Entity\Response\ListsProvidersResponse;
 use Apiship\Entity\Response\Part\Lists\Point;
 use Apiship\Entity\Response\Part\Lists\PointType;
 use Apiship\Entity\Response\Part\Lists\Provider;
+use Apiship\Entity\Response\Response;
 
 class Lists extends AbstractApi
 {
@@ -56,6 +57,42 @@ class Lists extends AbstractApi
             }
         }
 
+        return $response;
+    }
+
+    /**
+     * Получение списка городов
+     *
+     * @param string $delivery сервис доставки
+     * @param int    $limit
+     *
+     * @param int    $offset
+     * @param string $filter Возможна фильтрация по полям key, name
+     * @return Response
+     */
+    public function getProvidersCities($delivery, $limit = 20, $offset = 0, $filter = '')
+    {
+        if (!is_int($limit) || $limit < 0) {
+            $limit = 20;
+        }
+
+        if (!is_int($offset) || $offset < 0) {
+            $offset = 0;
+        }
+
+        $resultJson = $this->adapter->get('lists/providerCities/'.$delivery, [],
+            ['limit'  => $limit,
+                'offset' => $offset,
+                'filter' => $filter
+            ]);
+        $result = json_decode($resultJson);
+        $response = new Response();
+        $response->setOriginJson($resultJson);
+        if (!empty($result)) {
+            foreach ((array)$result->rows as $row) {
+                $response->addResult($row);
+            }
+        }
         return $response;
     }
 
