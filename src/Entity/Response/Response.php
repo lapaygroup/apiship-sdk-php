@@ -35,11 +35,11 @@ class Response extends AbstractResponse
     }
 
     /**
-     * @param $result
+     * @param object $result
      *
      * @return Response
      */
-    public function addResult($result)
+    public function addResult(object $result)
     {
         $this->results[] = $result;
         return $this;
